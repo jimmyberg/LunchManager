@@ -13,6 +13,17 @@ bool LunchManager::AddUser(const string& name){
 	else
 		return false;
 }
+bool LunchManager::transferCredit(const std::string& from, const std::string& to, const Money& money){
+	if(from == to)
+		return false;
+	User* userFrom = findUser(from);
+	User* userTo = findUser(to);
+	if(userFrom == nullptr || userTo == nullptr)
+		return false;
+	userTo->eurosCredit += money;
+	userFrom->eurosCredit -= money;
+	return true;
+}
 bool LunchManager::addCreditUser(const string& name, const Money& credit){
 	User* user = findUser(name);
 	if(user == nullptr)
@@ -93,7 +104,7 @@ void LunchManager::load(){
 		unsigned int usersSize;
 		iFile >> usersSize;
 		users.clear();
-		for (int i = 0; i < usersSize; ++i){
+		for (unsigned int i = 0; i < usersSize; ++i){
 			string name;
 			iFile >> name;
 			Money credit;

@@ -10,6 +10,7 @@ class LunchManager
 public:
 	LunchManager(){}
 	bool AddUser(const std::string& name);
+	bool transferCredit(const std::string& from, const std::string& to, const Money& money);
 	bool addCreditUser(const std::string& name, const Money& credit);
 	bool deleteUser(const std::string& name);
 	bool Lunch(const std::string& userPaid, const Money& costMeal);
