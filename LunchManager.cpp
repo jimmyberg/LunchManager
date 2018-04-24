@@ -2,6 +2,7 @@
 #include "LunchManager.h"
 #include <list>
 #include <fstream>
+#include "config.h"
 
 using namespace std;
 
@@ -89,7 +90,7 @@ void LunchManager::printUserCredit(){
 }
 
 void LunchManager::save(){
-	ofstream oFile("/home/jimmy/.lunch_manager");
+	ofstream oFile(SAVE_LOCATION".lunch_manager");
 	if(oFile.is_open()){
 		oFile << users.size() << endl;
 		for(auto& user: users){
@@ -99,7 +100,7 @@ void LunchManager::save(){
 }
 
 void LunchManager::load(){
-	ifstream iFile("/home/jimmy/.lunch_manager");
+	ifstream iFile(SAVE_LOCATION".lunch_manager");
 	if(iFile.is_open() && !iFile.eof()){
 		unsigned int usersSize;
 		iFile >> usersSize;
